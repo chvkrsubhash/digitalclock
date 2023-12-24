@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Watch</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: black;
+            transition: background-color 0.5s ease; /* Smooth transition effect */
+        }
+
+        #iclock {
+            background-color: blue;
+            color: yellow;
+            border-radius: 10px; /* Inner border radius */
+            text-align: center;
+            width: 550px;
+            height: 145px;
+            font-size: 115px;
+            border: 10px solid red; /* Transparent outer border */
+            text-shadow: 1px 1px 2px black, 20px 20px 25px red, 0 0 500px rgb(255, 0, 242);
+            box-shadow: 1px 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0px 200px 8px rgba(255, 251, 1, 0.89);
+            background-origin: border-box; /* Make sure gradient covers the border-box */
+
+        }
+
+        /* Style for the slider */
+        input[type="range"] {
+            width: 10%;
+            margin-top: 20px;
+
+            rotate: 90deg;
+        }
+    </style>
+</head>
+<body>
+    <input type="range" id="colorSlider" min="0" max="255" value="0">
+    <div id="iclock">
+        <div id="clock" class="w3-container w3-blue"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        // JavaScript code for the digital clock
+        function updateClock() {
+            const now = new Date();
+            const clockElement = document.getElementById("clock");
+            clockElement.innerText = now.toLocaleTimeString();
+        }
+        setInterval(updateClock, 1000);
+
+        // Slider change event
+        $("#colorSlider").on("input", function(){
+            const sliderValue = $(this).val();
+            const backgroundColor = `rgb(${sliderValue}, ${sliderValue}, ${sliderValue})`;
+            $("body").css("background-color", backgroundColor);
+        });
+    </script>
+</body>
+</html>
